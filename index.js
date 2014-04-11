@@ -1,17 +1,18 @@
 'use strict'; //jshint node:true
 
 exports.get = get
-function get(obj, key) {
-  return obj[key]
+function get(obj, key, fallback) {
+  return key in obj
+    ? obj[key]
+    : fallback
 }
 
 exports.getIn = getIn
-function getIn(obj, keys) { keys = keys.slice()
+function getIn(obj, keys, fallback) { keys = keys.slice()
   var key = keys.shift()
-    , ret = get(obj, key)
   return keys.length
-    ? getIn(ret, keys)
-    : ret
+    ? getIn(get(obj, key, {}), keys, fallback)
+    : get(obj, key, fallback)
 }
 
 
