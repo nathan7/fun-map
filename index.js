@@ -67,6 +67,21 @@ function selectKeys(obj, keys) {
   return ret
 }
 
+var keys = exports.keys = Object.keys || function keys(obj) {
+  var ret = []
+  for (var key in obj) if (has.call(obj, key))
+    ret.push(key)
+  return ret
+}
+
+exports.vals = vals
+function vals(obj) {
+  var ret = []
+  for (var key in obj) if (has.call(obj, key))
+    ret.push(obj[key])
+  return ret
+}
+
 // mutations ahead!
 
 exports.assocInM = assocInM

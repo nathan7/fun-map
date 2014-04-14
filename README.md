@@ -11,6 +11,8 @@
 ## merge(obj, …objs)
 ## zipmap(keys, values)
 ## selectKeys(obj, keys)
+## keys(obj)
+## vals(obj)
 
 ## DANGEROUS IMPURE THINGS
 ### assocM(obj, key, value)
