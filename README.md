@@ -1,7 +1,8 @@
 # fun-map
 
-  a few functional utilities for pretending that JS objects are Clojure string maps.
+  functional utilities for pretending that JS objects are Clojure string maps.
   like Clojure's impure operations on transients, there are a few mutating functions available with `M` as postfix (for DANGEROUS MUTABLE STUFF, obviously)
+  this is partially an experiment in how much Clojure I can bring to JS.
 
 ## get(obj, key)
 ## getIn(obj, keys)
