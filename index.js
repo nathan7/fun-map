@@ -56,6 +56,17 @@ function zipmap(keys, vals) {
   return ret
 }
 
+exports.selectKeys = selectKeys
+function selectKeys(obj, keys) {
+  var ret = {}
+  for (var i = 0, len = keys.length; i < len; i++) {
+    var key = keys[i]
+    if (has.call(obj, key))
+      ret[key] = obj[key]
+  }
+  return ret
+}
+
 // mutations ahead!
 
 exports.assocInM = assocInM

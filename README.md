@@ -10,6 +10,7 @@
 ## dissoc(obj, key)
 ## merge(obj, …objs)
 ## zipmap(keys, values)
+## selectKeys(obj, keys)
 
 ## DANGEROUS IMPURE THINGS
 ### assocM(obj, key, value)
