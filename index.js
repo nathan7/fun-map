@@ -48,6 +48,14 @@ function merge(obj, src) {
   return reduce(_mergeM, {}, slice.call(arguments))
 }
 
+exports.zipmap = zipmap
+function zipmap(keys, vals) {
+  var ret = {}
+  for (var i = 0, len = keys.length; i < len; i++)
+    ret[keys[i]] = vals[i]
+  return ret
+}
+
 // mutations ahead!
 
 exports.assocInM = assocInM

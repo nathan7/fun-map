@@ -9,6 +9,7 @@
 ## assocIn(obj, keys, value)
 ## dissoc(obj, key)
 ## merge(obj, …objs)
+## zipmap(keys, values)
 
 ## DANGEROUS IMPURE THINGS
 ### assocM(obj, key, value)
