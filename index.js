@@ -4,7 +4,7 @@ var has = {}.hasOwnProperty
 
 exports.get = get
 function get(obj, key, fallback) {
-  return key in obj
+  return has.call(obj, key)
     ? obj[key]
     : fallback
 }
