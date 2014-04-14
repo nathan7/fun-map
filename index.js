@@ -1,4 +1,5 @@
 'use strict'; //jshint node:true
+var has = {}.hasOwnProperty
 
 exports.get = get
 function get(obj, key, fallback) {
@@ -19,7 +20,8 @@ function getIn(obj, keys, fallback) { keys = keys.slice()
 exports.assoc = assoc
 function assoc(obj, key, value) {
   var ret = {}
-  Object.keys(obj).forEach(function(key) { ret[key] = obj[key] })
+  for (var curKey in obj) if (has.call(obj, curKey))
+    ret[curKey] = obj[curKey]
   ret[key] = value
   return ret
 }
@@ -35,9 +37,9 @@ function assocIn(obj, keys, value) { keys = keys.slice()
 exports.dissoc = dissoc
 function dissoc(obj, key) {
   var ret = {}
-  Object.keys(obj)
-    .filter(function(curKey) { return curKey !== key })
-    .forEach(function(key) { ret[key] = obj[key] })
+  for (var curKey in obj) if (has.call(obj, curKey))
+    if (curKey !== key)
+      ret[curKey] = obj[curKey]
   return ret
 }
 
