@@ -1,5 +1,6 @@
 'use strict'; //jshint node:true
 var has = {}.hasOwnProperty
+  , slice = [].slice
 
 exports.get = get
 function get(obj, key, fallback) {
@@ -15,7 +16,6 @@ function getIn(obj, keys, fallback) { keys = keys.slice()
     ? getIn(get(obj, key, {}), keys, fallback)
     : get(obj, key, fallback)
 }
-
 
 exports.assoc = assoc
 function assoc(obj, key, value) {
@@ -43,6 +43,11 @@ function dissoc(obj, key) {
   return ret
 }
 
+exports.merge = merge
+function merge(obj, src) {
+  return reduce(_mergeM, {}, slice.call(arguments))
+}
+
 // mutations ahead!
 
 exports.assocInM = assocInM
@@ -63,4 +68,24 @@ exports.dissocM = dissocM
 function dissocM(obj, key) {
   delete obj[key]
   return obj
+}
+
+exports.mergeM = mergeM
+function mergeM(obj, src) {
+  return arguments.length === 2
+    ? _mergeM(obj, src)
+    : reduce(_mergeM, obj, slice.call(arguments, 1))
+}
+
+function _mergeM(obj, src) {
+  for (var key in src) if (has.call(src, key))
+    obj[key] = src[key]
+  return obj
+}
+
+function reduce(fn, initial, values) {
+  var acc = initial
+  for (var i = 0, len = values.length; i < len; i++)
+    acc = fn(acc, values[i])
+  return acc
 }

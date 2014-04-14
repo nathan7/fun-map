@@ -8,8 +8,10 @@
 ## assoc(obj, key, value)
 ## assocIn(obj, keys, value)
 ## dissoc(obj, key)
+## merge(obj, …objs)
 
 ## DANGEROUS IMPURE THINGS
 ### assocM(obj, key, value)
 ### assocInM(obj, keys, value)
 ### dissocM(obj, key)
+### mergeM(obj, …objs)
