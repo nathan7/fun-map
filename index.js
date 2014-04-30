@@ -30,7 +30,7 @@ exports.assocIn = assocIn
 function assocIn(obj, keys, value) { keys = keys.slice()
   var key = keys.shift()
   return keys.length
-    ? assoc(obj, key, assoc(obj[key] || {}, keys, value))
+    ? assoc(obj, key, assoc(get(obj, key, {}), keys, value))
     : assoc(obj, key, value)
 }
 
