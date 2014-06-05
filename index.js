@@ -19,11 +19,7 @@ function getIn(obj, keys, fallback) { keys = keys.slice()
 
 exports.assoc = assoc
 function assoc(obj, key, value) {
-  var ret = {}
-  for (var curKey in obj) if (has.call(obj, curKey))
-    ret[curKey] = obj[curKey]
-  ret[key] = value
-  return ret
+  return assocM(clone(obj), key, value)
 }
 
 exports.assocIn = assocIn
@@ -122,4 +118,11 @@ function reduce(fn, initial, values) {
   for (var i = 0, len = values.length; i < len; i++)
     acc = fn(acc, values[i])
   return acc
+}
+
+function clone(obj) {
+  var ret = {}
+  for (var i = 0, len = keys.length; i < len; i++)
+    ret[keys[i]] = vals[i]
+  return ret
 }
