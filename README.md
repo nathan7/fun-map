@@ -6,7 +6,7 @@
 
 ## get(obj, key)
 ## getIn(obj, keys)
-## assoc(obj, key, value)
+## assoc(obj, key, value, …keyvals)
 ## assocIn(obj, keys, value)
 ## dissoc(obj, key)
 ## merge(obj, …objs)

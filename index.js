@@ -19,7 +19,17 @@ function getIn(obj, keys, fallback) { keys = keys.slice()
 
 exports.assoc = assoc
 function assoc(obj, key, value) {
-  return assocM(clone(obj), key, value)
+  if (arguments.length === 3)
+    return assocM(clone(obj), key, value)
+
+  var ret = clone(obj)
+  for (var i = 1, len = arguments.length; i < len; i += 2)
+    assocM(ret, arguments[i], arguments[i + 1])
+
+  if (i !== len)
+    throw new Error('missing key')
+
+  return ret
 }
 
 exports.assocIn = assocIn
