@@ -1,6 +1,6 @@
 {
   "name": "fun-map",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": " a few functional utilities for pretending that JS objects are Clojure string maps.",
   "main": "index.js",
   "scripts": {
