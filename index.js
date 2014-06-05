@@ -46,11 +46,27 @@ function assocIn(obj, keys, value) { keys = keys.slice()
 
 exports.dissoc = dissoc
 function dissoc(obj, key) {
-  var ret = {}
-  for (var curKey in obj) if (has.call(obj, curKey))
-    if (curKey !== key)
-      ret[curKey] = obj[curKey]
-  return ret
+  if (arguments.length === 1)
+    return obj
+  else if (arguments.length <= 4) {
+    var ret = {}
+      , keyA = key  ? (key  + '') : ''
+      , keyB = keyB ? (keyB + '') : ''
+      , keyC = keyC ? (keyC + '') : ''
+    for (var curKey in obj) if (has.call(obj, curKey))
+      if (curKey !== keyA && curKey !== keyB && curKey !== keyC)
+        ret[curKey] = obj[curKey]
+    return ret
+  }
+  else
+    return dissoc.apply(null, arguments)
+}
+
+dissoc.apply = function(_, args) {
+  var obj = clone(args[0])
+  for (var i = 1, len = args.length; i < len; i++)
+    dissocM(obj, args[i])
+  return obj
 }
 
 exports.merge = merge
@@ -146,7 +162,16 @@ assocM.apply = function(_, args) {
 
 exports.dissocM = dissocM
 function dissocM(obj, key) {
+  if (arguments.length > 2)
+    return dissocM.apply(null, arguments)
   delete obj[key]
+  return obj
+}
+
+dissocM.apply = function(_, args) {
+  var obj = args[0]
+  for (var i = 1, len = args.length; i < len; i++)
+    delete obj[args[i]]
   return obj
 }
 
