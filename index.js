@@ -19,12 +19,16 @@ function getIn(obj, keys, fallback) { keys = keys.slice()
 
 exports.assoc = assoc
 function assoc(obj, key, value) {
-  if (arguments.length === 3)
-    return assocM(clone(obj), key, value)
+  return arguments.length === 3
+    ? assocM(clone(obj), key, value)
+    : assoc.apply(null, arguments)
+}
 
-  var ret = clone(obj)
-  for (var i = 1, len = arguments.length; i < len; i += 2)
-    assocM(ret, arguments[i], arguments[i + 1])
+assoc.apply = function(_, args) {
+  var obj = args[0]
+    , ret = clone(obj)
+  for (var i = 1, len = args.length; i < len; i += 2)
+    assocM(ret, args[i], args[i + 1])
 
   if (i !== len)
     throw new Error('missing key')
@@ -97,10 +101,12 @@ function keyvals(obj) {
 }
 
 exports.hashmap = hashmap
-function hashmap() {
+function hashmap() { return hashmap.apply(null, arguments) }
+
+hashmap.apply = function(_, keyvals) {
   var ret = {}
-  for (var i = 0, len = arguments.length; i < len; i += 2)
-    assocM(ret, arguments[i], arguments[i + 1])
+  for (var i = 0, len = keyvals.length; i < len; i += 2)
+    assocM(ret, keyvals[i], keyvals[i + 1])
 
   if (i !== len)
     throw new Error('missing key')
@@ -124,9 +130,13 @@ function assocM(obj, key, value) {
     obj[key] = value
     return obj
   }
+  return assocM.apply(null, arguments)
+}
 
-  for (var i = 1, len = arguments.length; i < len; i += 2)
-    assocM(obj, arguments[i], arguments[i + 1])
+assocM.apply = function(_, args) {
+  var obj = args[0]
+  for (var i = 1, len = args.length; i < len; i += 2)
+    assocM(obj, args[i], args[i + 1])
 
   if (i !== len)
     throw new Error('missing key')
