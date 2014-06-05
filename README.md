@@ -16,7 +16,7 @@
 ## vals(obj)
 
 ## DANGEROUS IMPURE THINGS
-### assocM(obj, key, value)
+### assocM(obj, key, value, …keyvals)
 ### assocInM(obj, keys, value)
 ### dissocM(obj, key)
 ### mergeM(obj, …objs)

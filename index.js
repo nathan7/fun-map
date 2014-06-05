@@ -100,7 +100,17 @@ function assocInM(obj, keys, value) { keys = keys.slice()
 
 exports.assocM = assocM
 function assocM(obj, key, value) {
-  obj[key] = value
+  if (arguments.length === 3) {
+    obj[key] = value
+    return obj
+  }
+
+  for (var i = 1, len = arguments.length; i < len; i += 2)
+    assocM(obj, arguments[i], arguments[i + 1])
+
+  if (i !== len)
+    throw new Error('missing key')
+
   return obj
 }
 
