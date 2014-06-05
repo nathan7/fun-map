@@ -122,7 +122,7 @@ function reduce(fn, initial, values) {
 
 function clone(obj) {
   var ret = {}
-  for (var i = 0, len = keys.length; i < len; i++)
-    ret[keys[i]] = vals[i]
+  for (var key in obj) if (has.call(obj, key))
+    ret[key] = obj[key]
   return ret
 }
