@@ -4,6 +4,7 @@
   like Clojure's impure operations on transients, there are a few mutating functions available with `M` as postfix (for DANGEROUS MUTABLE STUFF, obviously)
   this is partially an experiment in how much Clojure I can bring to JS.
 
+## hashmap(…keyvals)
 ## get(obj, key)
 ## getIn(obj, keys)
 ## assoc(obj, key, value, …keyvals)

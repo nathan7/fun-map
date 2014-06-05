@@ -96,6 +96,18 @@ function keyvals(obj) {
   return ret
 }
 
+exports.hashmap = hashmap
+function hashmap() {
+  var ret = {}
+  for (var i = 0, len = arguments.length; i < len; i += 2)
+    assocM(ret, arguments[i], arguments[i + 1])
+
+  if (i !== len)
+    throw new Error('missing key')
+
+  return ret
+}
+
 // mutations ahead!
 
 exports.assocInM = assocInM
