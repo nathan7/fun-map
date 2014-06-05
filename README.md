@@ -14,6 +14,7 @@
 ## selectKeys(obj, keys)
 ## keys(obj)
 ## vals(obj)
+## keyvals(obj)
 
 ## DANGEROUS IMPURE THINGS
 ### assocM(obj, key, value, …keyvals)

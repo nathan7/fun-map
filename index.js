@@ -88,6 +88,14 @@ function vals(obj) {
   return ret
 }
 
+exports.keyvals = keyvals
+function keyvals(obj) {
+  var ret = []
+  for (var key in obj) if (has.call(obj, key))
+    ret.push([key, obj[key]])
+  return ret
+}
+
 // mutations ahead!
 
 exports.assocInM = assocInM
