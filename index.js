@@ -37,10 +37,11 @@ assoc.apply = function(_, args) {
 }
 
 exports.assocIn = assocIn
-function assocIn(obj, keys, value) { keys = keys.slice()
+function assocIn(obj, keys, value) { return assocIn_(obj, keys.slice(), value) }
+function assocIn_(obj, keys, value) {
   var key = keys.shift()
   return keys.length
-    ? assoc(obj, key, assoc(get(obj, key, {}), keys, value))
+    ? assoc(obj, key, assocIn_(obj[key] || {}, keys, value))
     : assoc(obj, key, value)
 }
 
@@ -133,11 +134,19 @@ hashmap.apply = function(_, keyvals) {
 // mutations ahead!
 
 exports.assocInM = assocInM
-function assocInM(obj, keys, value) { keys = keys.slice()
-  var key = keys.shift()
-  return keys.length
-    ? assocM(obj, key, assocM(obj[key] || {}, keys, value))
-    : assocM(obj, key, value)
+function assocInM(obj, keys, value) {
+  var ret = obj
+    , key
+
+  for (var i = 0, len = keys.length; i < (len - 1); i++) {
+    key = keys[i]
+    obj = obj[key] || (obj[key] = {})
+  }
+
+  key = keys[i]
+  obj[key] = value
+
+  return ret
 }
 
 exports.assocM = assocM
