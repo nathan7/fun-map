@@ -139,7 +139,7 @@ function assocInM(obj, keys, value) {
     `Object.create()` to set the object to not have any prototype
     to prevent prototype pollution attacks
   */
-  obj = Object.create(null)
+  obj = Object.create(obj)
 
   var ret = obj
     , key
