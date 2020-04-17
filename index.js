@@ -135,6 +135,12 @@ hashmap.apply = function(_, keyvals) {
 
 exports.assocInM = assocInM
 function assocInM(obj, keys, value) {
+  /*
+    `Object.create()` to set the object to not have any prototype
+    to prevent prototype pollution attacks
+  */
+  obj = Object.create(null)
+
   var ret = obj
     , key
 
