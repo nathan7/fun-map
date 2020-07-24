@@ -140,6 +140,7 @@ function assocInM(obj, keys, value) {
     to prevent prototype pollution attacks
   */
   obj = Object.create(obj)
+  Object.freeze(obj.prototype)
 
   var ret = obj
     , key
